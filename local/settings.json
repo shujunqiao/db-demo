@@ -1,0 +1,7 @@
+{
+  "use-global-engine-setting": false,
+  "use-default-js-engine": false,
+  "js-engine-path": "E:\\proj\\cocos-engine",
+  "use-default-cpp-engine": true,
+  "cpp-engine-path": ""
+}
