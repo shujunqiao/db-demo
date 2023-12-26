@@ -1,44 +1,54 @@
 const { ccclass, property } = cc._decorator;
+@ccclass("ReplaceData")
+class ReplaceData {
+  @property(cc.String)
+  public spriteFrameName: string = "";
+  @property(cc.String)
+  public slotName: string = "";
+}
 
 @ccclass
-export default class DB extends cc.Component {
+export default class Test extends cc.Component {
+  @property()
+  atlasName: string = "";
 
-    @property([cc.Prefab])
-    prefabs: cc.Prefab[] = [];
+  @property({ type: [ReplaceData] })
+  data: ReplaceData[] = [];
 
-    @property({ type: cc.Node, visible: false })
-    slotNode: cc.Node = null;
-
-    @property()
-    slotName: string = "dao";
-
-    private curIndex = 0;
-    start() {
-        if (this.slotName) {
-            const fullName = `ATTACHED_NODE:${this.slotName}`;
-            this.node.walk((node: cc.Node) => {
-                if (node.name === fullName) {
-                    this.slotNode = node;
-                }
-            }, null);
-            if (!this.slotNode) {
-                return;
-            }
-        }
-        const len = this.prefabs.length;
-        this.node.on(cc.Node.EventType.TOUCH_START, () => {
-            if (!this.slotNode) {
-                return;
-            }
-            if (this.curIndex >= len) {
-                this.curIndex = 0;
-            }
-            this.slotNode.destroyAllChildren();
-            const prefab = this.prefabs[this.curIndex];
-            const newNode = cc.instantiate(prefab);
-            newNode.parent = this.slotNode;
-            this.curIndex++;
+  start() {
+    if (!this.atlasName) {
+      return;
+    }
+    cc.resources.load(this.atlasName, cc.SpriteAtlas, (err, spAtlas: cc.SpriteAtlas) => {
+      if (!err) {
+        this.data.forEach((item) => {
+          this.replaceSlot(spAtlas, item.slotName, item.spriteFrameName);
         });
+      }
+    }
+    );
+  }
+  private replaceSlot(spAtlas: cc.SpriteAtlas, slotName: string, spriteFrameName: string): boolean {
+    if (!slotName || !spriteFrameName) {
+      return;
+    }
+    const spriteFrame = spAtlas.getSpriteFrame(spriteFrameName);
+    if (!spriteFrame) {
+      console.log(`not find ${spriteFrameName} in ${spAtlas.name}`);
+      return false;
     }
 
+    const armatureDisplay = this.getComponent(dragonBones.ArmatureDisplay);
+    if (!armatureDisplay) {
+      return false;
+    }
+    const slot = armatureDisplay.armature().getSlot(slotName);
+
+    if (!slot) {
+      console.log(`not find ${slotName} in ${armatureDisplay.name}`);
+      return false;
+    }
+    slot.setCustomTexture(spriteFrame);
+    return true;
+  }
 }
