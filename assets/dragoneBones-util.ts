@@ -9,7 +9,7 @@ dragonBones.CCSlot.prototype.getTexture = function () {
   }
 };
 // @ts-ignore
-dragonBones.CCSlot.prototype.setCustomTexture = function (spriteFrame: cc.SpriteFrame) {
+dragonBones.CCSlot.prototype.setSpriteFrame = function (spriteFrame: cc.SpriteFrame) {
   if (!spriteFrame) {
     return;
   }
