@@ -3,9 +3,10 @@
 #/////////////////////////////////////////////////////////////////////////////
 
 /library/
+!/db/library
+!/db2/library
 /temp/
 
-/build/
 native
 #/////////////////////////////////////////////////////////////////////////////
 # npm files
@@ -55,3 +56,5 @@ local/node-tree-state.json
 local/node-library.json
 local/local.json
 local/layout.editor.json
+settings/project.json
+packages/
