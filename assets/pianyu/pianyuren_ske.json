@@ -13052,6 +13052,55 @@
                     "duration": 240,
                     "playTimes": 0,
                     "name": "a_3_1",
+                    "frame": [
+                        {
+                            "duration": 5,
+                            "events": [
+                                {
+                                    "name": "event1"
+                                }
+                            ]
+                        },
+                        {
+                            "duration": 15,
+                            "events": [
+                                {
+                                    "name": "1"
+                                }
+                            ]
+                        },
+                        {
+                            "duration": 67,
+                            "events": [
+                                {
+                                    "name": "2"
+                                }
+                            ]
+                        },
+                        {
+                            "events": [
+                                {
+                                    "name": "3"
+                                }
+                            ]
+                        },
+                        {
+                            "duration": 7,
+                            "events": [
+                                {
+                                    "name": "6"
+                                }
+                            ]
+                        },
+                        {
+                            "duration": 0,
+                            "events": [
+                                {
+                                    "name": "99"
+                                }
+                            ]
+                        }
+                    ],
                     "bone": [
                         {
                             "name": "ti",
@@ -15012,7 +15061,7 @@
                                     "duration": 67,
                                     "actions": [
                                         {
-                                            "gotoAndPlay": "yu8"
+                                            "gotoAndPlay": "yu5"
                                         }
                                     ]
                                 },
@@ -15024,7 +15073,7 @@
                                     ]
                                 },
                                 {
-                                    "duration": 21,
+                                    "duration": 7,
                                     "actions": [
                                         {
                                             "gotoAndPlay": "yu7"
@@ -15032,12 +15081,7 @@
                                     ]
                                 },
                                 {
-                                    "duration": 51,
-                                    "actions": [
-                                        {
-                                            "gotoAndPlay": "yu9"
-                                        }
-                                    ]
+                                    "duration": 65
                                 },
                                 {
                                     "duration": 34,
@@ -15491,7 +15535,7 @@
             ],
             "defaultActions": [
                 {
-                    "gotoAndPlay": "a_4"
+                    "gotoAndPlay": "a_3_1"
                 }
             ]
         },
@@ -17936,6 +17980,11 @@
                     "duration": 0,
                     "playTimes": 0,
                     "name": "yu14",
+                    "frame": [
+                        {
+                            "duration": 0
+                        }
+                    ],
                     "slot": [
                         {
                             "name": "yu9",

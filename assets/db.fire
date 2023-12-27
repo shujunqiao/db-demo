@@ -271,7 +271,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        145.619,
+        168.609,
         0,
         0,
         0,
@@ -293,7 +293,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "f4OxJtx6NEiJpLEbLdi5iI"
+    "_id": "31vQ9mMylDr7pfC49rHo0u"
   },
   {
     "__type__": "dragonBones.ArmatureDisplay",
@@ -331,10 +331,9 @@
     "_N$_animationIndex": 7,
     "_N$_defaultCacheMode": 0,
     "_N$timeScale": 1,
-    "_N$test": false,
     "_N$debugBones": false,
     "_N$enableBatch": false,
-    "_id": "04BrCKYT5Dma54raMQg4bK"
+    "_id": "a4azDrkMpH14kdvwbk5sOq"
   },
   {
     "__type__": "7d508ehW5FA37zJd711aO7l",
@@ -344,9 +343,8 @@
       "__id__": 5
     },
     "_enabled": true,
-    "atlasName": "Plist",
-    "data": [],
-    "_id": "b03mo8Us1CwZ+hRbeneAh7"
+    "atlasName": "yu",
+    "_id": "377OoiKWBGUq+vVOYwmYC2"
   },
   {
     "__type__": "cc.Canvas",
