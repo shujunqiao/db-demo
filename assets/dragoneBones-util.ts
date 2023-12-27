@@ -3,6 +3,7 @@ const slot_getTexture = dragonBones.CCSlot.prototype.getTexture;
 // @ts-ignore
 dragonBones.CCSlot.prototype.getTexture = function () {
   if (this._customSpriteFrame) {
+    this.setSpriteFrame(this._customSpriteFrame);
     return this._customSpriteFrame.getTexture();
   } else {
     return slot_getTexture.call(this);

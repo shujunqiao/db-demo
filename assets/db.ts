@@ -1,54 +1,50 @@
 const { ccclass, property } = cc._decorator;
-@ccclass("ReplaceData")
-class ReplaceData {
-  @property(cc.String)
-  public spriteFrameName: string = "";
-  @property(cc.String)
-  public slotName: string = "";
-}
 
 @ccclass
 export default class Test extends cc.Component {
   @property()
   atlasName: string = "";
 
-  @property({ type: [ReplaceData] })
-  data: ReplaceData[] = [];
-
   start() {
     if (!this.atlasName) {
       return;
     }
-    cc.resources.load(this.atlasName, cc.SpriteAtlas, (err, spAtlas: cc.SpriteAtlas) => {
-      if (!err) {
-        this.data.forEach((item) => {
-          this.replaceSlot(spAtlas, item.slotName, item.spriteFrameName);
-        });
+    this.node.on(cc.Node.EventType.TOUCH_START, () => {
+      cc.resources.load(this.atlasName, cc.SpriteAtlas, (err, spAtlas: cc.SpriteAtlas) => {
+        if (!err) {
+          const armatureName = "yu";
+          const armatureDisplay = this.getComponent(dragonBones.ArmatureDisplay);
+          this.replaceArmature(armatureDisplay, armatureName, spAtlas);
+        }
       }
-    }
-    );
+      );
+    })
   }
-  private replaceSlot(spAtlas: cc.SpriteAtlas, slotName: string, spriteFrameName: string): boolean {
-    if (!slotName || !spriteFrameName) {
-      return;
+  /**
+   * 
+   * @param armatureDisplay 龙骨组件
+   * @param armatureName 要替换的龙骨名称
+   * @param spAtlas 将指定龙骨的纹理替换为该图集
+   */
+  private replaceArmature(armatureDisplay: dragonBones.ArmatureDisplay, armatureName: string, spAtlas: cc.SpriteAtlas) {
+    const slotArray: dragonBones.Slot[] = armatureDisplay.armature().getSlots();
+    const frames = spAtlas.getSpriteFrames();
+    for (let i = 0; i < slotArray.length; i++) {
+      const slot = slotArray[i];
+      slot.displayList.forEach((display) => {
+        if (display instanceof dragonBones.Armature) {
+          if (display.name === armatureName) {
+            frames.forEach(item => {
+              const s: any = display.getSlot(item.name);
+              if (s) {
+                s.setSpriteFrame(item);
+              } else {
+                cc.log(`can't find any slot use sprite frame: ${item.name}`)
+              }
+            });
+          }
+        }
+      })
     }
-    const spriteFrame = spAtlas.getSpriteFrame(spriteFrameName);
-    if (!spriteFrame) {
-      console.log(`not find ${spriteFrameName} in ${spAtlas.name}`);
-      return false;
-    }
-
-    const armatureDisplay = this.getComponent(dragonBones.ArmatureDisplay);
-    if (!armatureDisplay) {
-      return false;
-    }
-    const slot = armatureDisplay.armature().getSlot(slotName);
-
-    if (!slot) {
-      console.log(`not find ${slotName} in ${armatureDisplay.name}`);
-      return false;
-    }
-    slot.setCustomTexture(spriteFrame);
-    return true;
   }
 }
